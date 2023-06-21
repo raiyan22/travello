@@ -13,8 +13,8 @@ export default function LoginPage() {
     async function loginUser(ev){
         ev.preventDefault();
         try {
-            const userInfo = await axios.post('/login', {email, password});
-            setUser(userInfo);
+            const response = await axios.post('/login', {email, password});
+            setUser(response.data);
             alert('Login success!');
             setRedirect(true); 
         } catch(e) {
