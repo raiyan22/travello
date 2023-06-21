@@ -40,7 +40,9 @@ app.post( '/register',  async(req, res) => {
 
 // app.post('/login', async (req, res) => {
 //     const {email, password} = req.body;
-//     const userDoc = await User.findOne(email);
+//     const userDoc = await User.findOne({email});
+
+//     console.log(userDoc);
 
 //     if( userDoc ) {
 //         res.json('found user');
@@ -56,5 +58,22 @@ app.post( '/register',  async(req, res) => {
 //         res.json('not found');
 //     }
 // });
+
+app.post('/login', async (req, res)=> {
+    const {email,password} = req.body;
+    const userDoc = await User.findOne({email});
+    if( userDoc ) {
+        // res.json('found');
+        const passOK = bcrypt.compareSync(password, userDoc.password);
+        if( passOK ) {
+            res.json('password OK');
+        } else {
+            res.status(422).json('password NOT OK');
+        }
+    } else {
+        res.json('not found');
+    }
+});
+  
 
 app.listen('4000');
