@@ -1,15 +1,39 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 export default function LoginPage() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+
+    async function loginUser(ev){
+        ev.preventDefault();
+        try {
+            await axios.post('/login', {email, password});
+            alert('Login success!');
+        } catch(e) {
+            alert('Login failed');
+        }
+    }
+
     return (
         <div className="mt-4 grow flex items-center justify-around">
             <div className="mb-64">
                 
                 <h1 className="text-4xl text-center pb-5"> Login</h1>
                 
-                <form className="max-w-md mx-auto">
-                    <input type="email" placeholder="your@email.com" />
-                    <input type="password" placeholder="password" />
+                <form className="max-w-md mx-auto" onClick={loginUser}>
+
+                <input type="email" 
+                        placeholder="your@email.com"
+                        value={email}
+                        onChange={(ev) => setEmail(ev.target.value)} />
+
+                    <input type="password" 
+                        placeholder="password" 
+                        value={password}
+                        onChange={(ev) => setPassword(ev.target.value)} />
+
                     <button className="primary">Login</button>
                     <div className="text-center py-3 text-gray-400">
                         Don't have an account yet? 
