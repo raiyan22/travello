@@ -3,8 +3,8 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function LoginPage() {
-    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     async function loginUser(ev){
         ev.preventDefault();
@@ -22,7 +22,7 @@ export default function LoginPage() {
                 
                 <h1 className="text-4xl text-center pb-5"> Login</h1>
                 
-                <form className="max-w-md mx-auto" onClick={loginUser}>
+                <form className="max-w-md mx-auto" onSubmit={loginUser}>
 
                 <input type="email" 
                         placeholder="your@email.com"
