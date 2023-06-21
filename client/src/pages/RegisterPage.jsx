@@ -13,7 +13,7 @@ export default function RegisterPage() {
             await axios.post('/register', {
                 name,
                 email,
-                password
+                password,
             });
             alert('Registration success! Log in now!');
         } catch(e) {
@@ -58,5 +58,3 @@ export default function RegisterPage() {
         </div>
     );
 }
-
-// start here : https://youtu.be/MpQbwtSiZ7E?t=2731

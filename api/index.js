@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const User = require('./models/User.js');
 const app = express();
 
-const bcryptSalt = bcrypt.genSaltSync(8);
+const salt = bcrypt.genSaltSync(7);
 
 app.use(express.json());
 app.use(cors({
@@ -26,12 +26,11 @@ app.get( '/test', (req, res) => {
 
 app.post( '/register',  async(req, res) => {
     const {name, email, password} = req.body;
-    
     try {
         const userDoc = await User.create({
             name,
             email,
-            password: bcrypt.hashSync(password, bcryptSalt),
+            password:bcrypt.hashSync(password, salt),
         });
         res.json(userDoc);
     } catch(e) {
