@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function LoginPage() {
@@ -42,7 +42,6 @@ export default function LoginPage() {
                         </Link>
                     </div>
                 </form>
-            
             </div>
         </div>
     );
